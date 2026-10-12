@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <meta name="theme-color" content="#0e0609" />
+    <title>Samet'in Dilek Kutusu</title>
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <main>
+      <section class="card" id="loginCard">
+        <p class="eyebrow">Sadece Samet için</p>
+        <h1>Dilek kutusu</h1>
+        <p class="intro">Havva'nın kalbinden geçen dileği görmek için özel kodunu yaz.</p>
+        <form id="accessForm">
+          <label for="accessCode">Yönetici kodu</label>
+          <div class="field-row">
+            <input id="accessCode" type="password" autocomplete="current-password" required />
+            <button type="submit">Kutuyu aç</button>
+          </div>
+        </form>
+        <p class="status" id="status" role="status"></p>
+      </section>
+
+      <section class="wishes" id="wishesPanel" hidden>
+        <header>
+          <div>
+            <p class="eyebrow">Havva'dan Samet'e</p>
+            <h1>Dilek kutusu</h1>
+          </div>
+          <button class="refresh" id="refreshButton" type="button">Yenile</button>
+        </header>
+        <div class="wish-list" id="wishList"></div>
+        <p class="empty" id="emptyState" hidden>Henüz bir dilek bırakılmamış.</p>
+      </section>
+    </main>
+    <a class="back" href="../">← Siteye dön</a>
+    <script src="../supabase-config.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

@@ -321,35 +321,34 @@ async function makeWish(event) {
   }
 
   wishButton.disabled = true;
-  wishButton.querySelector('span').textContent = 'Paylaşım hazırlanıyor…';
+  wishButton.querySelector('span').textContent = 'Dileğin gönderiliyor…';
   wishResult.classList.remove('show', 'error');
 
   try {
-    const shareText = `Samet, doğum günü dileğim:\n\n${message}`;
-    let copied = false;
+    const { url, key } = window.SUPABASE_CONFIG;
+    const response = await fetch(`${url}/rest/v1/wishes`, {
+      method: 'POST',
+      headers: {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal'
+      },
+      body: JSON.stringify({ message })
+    });
 
-    if (navigator.share) {
-      await navigator.share({ title: 'Havva’nın dileği', text: shareText });
-    } else {
-      await navigator.clipboard.writeText(shareText);
-      copied = true;
-    }
+    if (!response.ok) throw new Error('Wish could not be saved');
 
-    wishResult.textContent = copied
-      ? 'Dileğin kopyalandı. Şimdi Samet’e mesaj olarak gönderebilirsin. ✨'
-      : 'Dileğin paylaşım için hazırlandı. Kalbinde tuttuğun her şey gerçek olsun. ✨';
+    wishResult.textContent = 'Dileğin Samet’e ulaştı. Kalbinde tuttuğun her şey gerçek olsun. ✨';
     wishResult.classList.add('show');
-    wishButton.querySelector('span').textContent = copied ? 'Dilek kopyalandı' : 'Dilek paylaşıldı';
+    wishButton.querySelector('span').textContent = 'Dileğin Samet’e ulaştı';
     wishMessage.disabled = true;
     addBurst(innerWidth / 2, innerHeight * .5, 160);
     playTone(523.25, 0, 1.4, .035);
     playTone(659.25, .12, 1.4, .03);
     playTone(783.99, .24, 2.2, .025);
   } catch (error) {
-    const cancelled = error && error.name === 'AbortError';
-    wishResult.textContent = cancelled
-      ? 'Paylaşım iptal edildi; istersen tekrar deneyebilirsin.'
-      : 'Paylaşım açılamadı. Lütfen tekrar dene.';
+    wishResult.textContent = 'Dileğin gönderilemedi. İnternet bağlantını kontrol edip tekrar dener misin?';
     wishResult.classList.add('show', 'error');
     wishButton.disabled = false;
     wishButton.querySelector('span').textContent = 'Tekrar dene';

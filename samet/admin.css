@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Italiana&family=Manrope:wght@300;400;500;600&display=swap');
+
+:root {
+  --deep: #0e0609;
+  --wine: #641429;
+  --rose: #f47b96;
+  --blush: #f8d9df;
+  --cream: #fbf3e8;
+  --line: rgba(248, 217, 223, .18);
+  --serif: 'Italiana', 'Times New Roman', serif;
+  --sans: 'Manrope', system-ui, sans-serif;
+  --mono: 'DM Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; color: var(--cream); font-family: var(--sans); background: radial-gradient(circle at 50% 0, #4a1022 0, var(--deep) 48%); }
+.grain { position: fixed; inset: -40%; pointer-events: none; opacity: .035; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitchTiles'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+main { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 11vh 0 90px; }
+.card, .wishes { border: 1px solid var(--line); background: rgba(22, 9, 14, .82); backdrop-filter: blur(18px); box-shadow: 0 28px 90px rgba(0,0,0,.38); border-radius: 28px; padding: clamp(26px, 6vw, 54px); }
+.eyebrow { margin: 0 0 12px; color: var(--rose); font: 500 11px/1.4 var(--mono); letter-spacing: .19em; text-transform: uppercase; }
+h1 { margin: 0; font: 400 clamp(46px, 10vw, 76px)/1 var(--serif); }
+.intro { max-width: 500px; margin: 24px 0 32px; color: rgba(251,243,232,.68); line-height: 1.8; }
+label { display: block; margin-bottom: 10px; color: var(--blush); font: 400 12px var(--mono); letter-spacing: .08em; }
+.field-row { display: flex; gap: 10px; }
+input { min-width: 0; flex: 1; border: 1px solid var(--line); border-radius: 14px; padding: 15px 17px; color: var(--cream); background: rgba(255,255,255,.05); font: 400 15px var(--mono); outline: none; }
+input:focus { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(244,123,150,.12); }
+button { border: 0; border-radius: 14px; padding: 15px 20px; color: #250812; background: linear-gradient(135deg, var(--blush), var(--rose)); font: 600 14px var(--sans); cursor: pointer; }
+button:disabled { opacity: .55; cursor: wait; }
+.status { min-height: 22px; margin: 18px 0 0; color: var(--rose); font-size: 13px; }
+.wishes header { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 34px; }
+.refresh { padding: 11px 15px; color: var(--blush); background: rgba(255,255,255,.07); border: 1px solid var(--line); }
+.wish-list { display: grid; gap: 14px; }
+.wish { border: 1px solid var(--line); border-radius: 18px; padding: 20px; background: rgba(255,255,255,.035); }
+.wish p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font: 400 18px/1.7 var(--serif); }
+.wish time { display: block; margin-top: 15px; color: rgba(251,243,232,.43); font: 300 10px var(--mono); letter-spacing: .08em; }
+.empty { margin: 10px 0 0; color: rgba(251,243,232,.58); }
+.back { position: fixed; left: 22px; bottom: 20px; color: rgba(251,243,232,.58); text-decoration: none; font-size: 13px; }
+
+@media (max-width: 560px) {
+  main { padding-top: 7vh; }
+  .field-row { flex-direction: column; }
+  .field-row button { width: 100%; }
+  .wishes header { align-items: center; }
+}
