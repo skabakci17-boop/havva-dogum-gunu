@@ -112,7 +112,6 @@ button { font: inherit; }
 
 .eyebrow { display: inline-flex; align-items: center; gap: 12px; }
 .eyebrow span { width: 28px; height: 1px; background: currentColor; }
-.tiny-note { font: 300 10px var(--mono); letter-spacing: .18em; color: rgba(251,243,232,.45); margin: 26px 0 9px; }
 
 .opening h1 {
   font: 400 clamp(4.6rem, 14vw, 9.5rem)/.72 var(--serif);
